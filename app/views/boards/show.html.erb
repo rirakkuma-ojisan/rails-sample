@@ -4,14 +4,8 @@
     <%= link_to '編集', edit_board_path(@board), class: 'btn btn-outline-dark' %>
   </div>
 </div>
+<% # object: @board とした場合は、パーシャル名(board)と同名のローカル変数が作成されて、パーシャルに渡される %>
+<% # render partial: 'board', object: @board %>
 
-<div class="card">
-  <div class="card-header">
-    <h4><%= @board.title %></h4>
-  </div>
-  <div class="card-body">
-    <!-- simple_formatを使わないと、改行されない -->
-    <p class="card-text"><%= simple_format(@board.body) %></p>
-    <p class="text-right font-weight-bold mr-10"><%= @board.name %></p>
-  </div>
-</div>
+<% # 今回のように、modelのオブジェクトを表示するだけならさらに簡略に書ける %>
+<%= render @board %>

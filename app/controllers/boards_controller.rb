@@ -9,6 +9,7 @@ class BoardsController < ApplicationController
 
   def create
     Board.create(board_params)
+    redirect_to action: "index"
   end
 
   def show
