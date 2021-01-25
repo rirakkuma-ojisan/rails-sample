@@ -13,6 +13,7 @@
       <th>作成日時</th>
       <th>更新日時</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -23,7 +24,10 @@
         <td><%= board.name %></td>
         <td><%= board.created_at.strftime('%Y年%m月%d日 %H時%M分') %></td>
         <td><%= board.updated_at.to_s(:datetime_jp) %></td><!-- 同じフォーマットを使い回す場合、confid/initializers/time_formats.rbで定義したこのやり方の方が便利 -->
+
+        <% # board を第二引数に渡すことにより、boards/:id のパスが設定される %>
         <td><%= link_to '詳細', board, class: 'btn btn-outline-dark' %></td>
+        <td><%= link_to '削除', board, class: 'btn btn-outline-dark', method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
