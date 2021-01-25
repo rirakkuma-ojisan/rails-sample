@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get 'boards', to: 'boards#index'
   post 'boards', to: 'boards#create'
   get 'boards/new', to: 'boards#new'
+  get 'boards/:id', to: 'boards#show'
 end
