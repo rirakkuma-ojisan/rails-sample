@@ -3,7 +3,8 @@ class BoardsController < ApplicationController
   before_action :set_target_board, only: %i[show edit update destroy]
 
   def index
-    @boards = Board.all
+    # kaminariを導入したことにより、モデルにpageメソッドが追加された
+    @boards = Board.page(params[:page])
   end
 
   def new
