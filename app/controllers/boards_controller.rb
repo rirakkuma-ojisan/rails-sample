@@ -12,11 +12,19 @@ class BoardsController < ApplicationController
   end
 
   def create
-    board = Board.create(board_params)
-    # flash変数は一度そのキーで参照されたら、そのキーの値はセッションから削除されるという特殊な変数
-    flash[:notice] = "「#{board.title}」の掲示板を作成しました。"
-    redirect_to board
-    # redirect_to action: "index"
+    # newした時点ではまだdbに保存されていない
+    board = Board.new(board_params)
+    if board.save
+      board.create
+      flash[:notice] = "「#{board.title}」の掲示板を作成しました。"
+      redirect_to board  
+    else
+      redirect_to new_board_path, flash: {
+        board: board,
+        error_messages: board.errors.full_messages
+      }
+
+    end
   end
 
   def show
