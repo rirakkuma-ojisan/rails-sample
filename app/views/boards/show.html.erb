@@ -14,3 +14,4 @@
 
 <% # 今回のように、modelのオブジェクトを表示するだけならさらに簡略に書ける %>
 <%= render @board %>
+<%= render partial: 'comment_form', locals: {comment: @comment} %>
