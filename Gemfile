@@ -38,6 +38,8 @@ gem 'rails-i18n'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rails-flog', require: 'flog'
+  # gemの名前と読み込むライブラリの名前が違う場合は、このようにrequireを指定する必要がある
 end
 
 # 開発時のみ必要なgem

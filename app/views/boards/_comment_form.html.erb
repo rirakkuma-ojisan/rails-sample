@@ -1,7 +1,6 @@
 <div class="p-comment__formBox">
   <p class="p-comment__formTitle">コメント記入</p>
-  <% # undefined method comments_path への対処法 http://gaku3601.hatenablog.com/entry/2014/08/30/101125  %>
-  <%= form_for @comment, :url => {:action => :create} do |f| %>
+  <%= form_for comment do |f| %>
     <%= f.hidden_field :board_id %>
     <div class="form-group">
       <%= f.label :name, '名前' %>
