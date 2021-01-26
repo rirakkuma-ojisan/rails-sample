@@ -11,6 +11,8 @@
 #
 
 class Board < ApplicationRecord
+  has_many :comments
+
   # presence 必須かどうか
   # length 文字数の制限
   validates :name, presence: true, length: {maximum: 10}
