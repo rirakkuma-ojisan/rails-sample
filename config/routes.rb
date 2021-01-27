@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   
   #resources :boards, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
+  root 'home#index'
+
   resources :boards
   resources :comments, only: %i[create destroy]
 end
