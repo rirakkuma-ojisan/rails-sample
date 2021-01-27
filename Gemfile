@@ -40,6 +40,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rails-flog', require: 'flog'
   # gemの名前と読み込むライブラリの名前が違う場合は、このようにrequireを指定する必要がある
+
+  gem 'rspec-rails', '~> 3.8'
 end
 
 # 開発時のみ必要なgem
