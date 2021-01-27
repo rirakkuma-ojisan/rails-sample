@@ -32,11 +32,20 @@ class BoardsController < ApplicationController
   end
 
   def edit
+    @board.attributes = flash[:board] if flash[:board]
   end
 
   def update
-    @board.update(board_params)
-    redirect_to @board
+    # @board.update(board_params)
+    # redirect_to @board
+    if @board.update(board_params)
+      redirect_to @board
+    else
+      redirect_to edit_board_path, flash: {
+        board: @board,
+        error_messages: @board.errors.full_messages
+      }
+    end
   end
 
   def destroy
