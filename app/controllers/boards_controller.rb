@@ -3,8 +3,11 @@ class BoardsController < ApplicationController
   before_action :set_target_board, only: %i[show edit update destroy]
 
   def index
+    # Rubyでは慣習的にBooleanを返すメソッド名の終わりに?をつける
+    @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
+    @boards = @boards.page(params[:page])
     # kaminariを導入したことにより、モデルにpageメソッドが追加された
-    @boards = Board.page(params[:page])
+    # @boards = Board.page(params[:page])
   end
 
   def new
@@ -15,7 +18,6 @@ class BoardsController < ApplicationController
     # newした時点ではまだdbに保存されていない
     board = Board.new(board_params)
     if board.save
-      board.create
       flash[:notice] = "「#{board.title}」の掲示板を作成しました。"
       redirect_to board
     else
