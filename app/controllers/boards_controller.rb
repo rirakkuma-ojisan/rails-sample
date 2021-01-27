@@ -17,7 +17,7 @@ class BoardsController < ApplicationController
     if board.save
       board.create
       flash[:notice] = "「#{board.title}」の掲示板を作成しました。"
-      redirect_to board  
+      redirect_to board
     else
       redirect_to new_board_path, flash: {
         board: board,
@@ -56,7 +56,7 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:name, :title, :body)
+    params.require(:board).permit(:name, :title, :body, tag_ids: [])
   end
 
   def set_target_board

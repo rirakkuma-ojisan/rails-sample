@@ -12,8 +12,8 @@
 
 class Board < ApplicationRecord
   has_many :comments, dependent: :delete_all
-  has_many :board_tag_relations, dependent :delete_all
-  has_many :tags, through :board_tag_relations
+  has_many :board_tag_relations, dependent: :delete_all
+  has_many :tags, through: :board_tag_relations
 
   # presence 必須かどうか
   # length 文字数の制限
