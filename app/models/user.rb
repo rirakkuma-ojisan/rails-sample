@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :name,
     presence: true, # 必須
     uniqueness: true, # 重複不可
-    length: {maximun: 16}, #文字数上限
+    length: {maximum: 16}, #文字数上限
     format: {
       with: /\A[a-z0-9]+\z/,
       message: 'は小文字英数字で入力してください' # デフォルトだと「不正な値です」とかのエラ〜メッセージになり、何が不正なのかよくわからないから
