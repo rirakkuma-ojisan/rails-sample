@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       redirect_to mypage_path
     else
       render 'home/index'
+    end
   end
 
   def destroy
