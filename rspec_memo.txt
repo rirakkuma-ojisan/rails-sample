@@ -2,3 +2,5 @@
 bundle exec rspec -f d ./spec/models/
 
 rspec -f d spec/controllers/
+
+rspec -f d spec/controllers/users_controller_spec.rb:45
