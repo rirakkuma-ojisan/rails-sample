@@ -1,2 +1,4 @@
 # rspecの実行方法
 bundle exec rspec -f d ./spec/models/
+
+rspec -f d spec/controllers/
