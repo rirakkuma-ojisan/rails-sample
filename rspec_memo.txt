@@ -1,0 +1,2 @@
+# rspecの実行方法
+bundle exec rspec -f d ./spec/models/
