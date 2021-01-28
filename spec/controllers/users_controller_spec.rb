@@ -2,10 +2,8 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   describe 'GET #new' do
-
     # 事前にnewアクションにgetし、
     # これによりgetのリクエスト結果が、responseという変数に格納される
-
     before { get :new}
 
     it 'レスポンスコードが200であること' do
@@ -21,6 +19,27 @@ RSpec.describe UsersController, type: :controller do
       # viewに渡される変数のチェック
       expect(assigns(:user)).to be_a_new User
     end
+  end
 
+  describe "POST #create" do
+    context "正しいユーザー情報が渡ってきた場合" do
+      let(:params) do
+        {
+          user: {
+            name: 'name',
+            password: 'password',
+            password_confirmation: 'password'
+          }
+        }
+      end
+
+      it 'ユーザーが一人増えていること' do
+        expect { post :create, params: params}.to change(User, :count).by(1)
+      end
+
+      it 'マイページにリダイレクトされること' do
+        expect(post :create, params: params).to redirect_to(mypage_path)
+      end
+    end
   end
 end
