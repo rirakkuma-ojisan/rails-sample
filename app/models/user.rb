@@ -32,6 +32,7 @@ class User < ApplicationRecord
 
   # 生年月日から現在の年齢を返す
   def age 
-    0
+    now = Time.zone.now
+    (now.strftime('%Y%m%d').to_i - birthday.strftime('%Y%m%d').to_i) / 10000
   end
 end
