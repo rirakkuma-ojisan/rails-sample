@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '5.2.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
@@ -25,19 +25,27 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap', '~> 4.0.0'
-# gem 'mini_racer'
+gem 'mini_racer'
+gem 'kaminari'
+gem 'rails-i18n'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rails-flog', require: 'flog'
+  # gemの名前と読み込むライブラリの名前が違う場合は、このようにrequireを指定する必要がある
+
+  gem 'rspec-rails', '~> 3.8'
+  gem 'rails-controller-testing'
 end
 
+# 開発時のみ必要なgem
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
@@ -45,6 +53,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pry-byebug'
+  gem 'annotate', '~> 2.7.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

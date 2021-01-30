@@ -1,9 +1,24 @@
 <div class="d-flex align-items-center">
   <h1>掲示板一覧</h1>
   <div class="ml-auto boards__linkBox">
-    <a class="btn btn-outline-dark">新規作成</a>
+    <%= form_with url: boards_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :tag_id,
+        options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+        {
+          prompt: 'タグで絞り込み',
+          class: 'form-control boards__select',
+          onchange: 'submit(this.form);'
+        }
+      %>
+    <% end %>
+    <%= link_to '新規作成', new_board_path, class: 'btn btn-outline-dark' %>
   </div>
 </div>
+
+<% if flash[:notice] %>
+  <div class='alert alert-danger'><%= flash[:notice] %></div>
+<% end %>
+
 <table class="table table-hover boards__table">
   <thead class="thead-dark">
     <tr>
@@ -12,22 +27,25 @@
       <th>作成者</th>
       <th>作成日時</th>
       <th>更新日時</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>1</th>
-      <td>雑談掲示板</td>
-      <td>Taro</td>
-      <td>2018年4月1日</td>
-      <td>2018年4月15日</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>雑談掲示板2</td>
-      <td>Ken</td>
-      <td>2018年4月1日</td>
-      <td>2018年4月15日</td>
-    </tr>
+    <% @boards.each do |board|%>
+      <tr>
+        <td><%= board.id %></td>
+        <td><%= board.title %></td>
+        <td><%= board.name %></td>
+        <td><%= board.created_at.strftime('%Y年%m月%d日 %H時%M分') %></td>
+        <td><%= board.updated_at.to_s(:datetime_jp) %></td><!-- 同じフォーマットを使い回す場合、confid/initializers/time_formats.rbで定義したこのやり方の方が便利 -->
+
+        <% # board を第二引数に渡すことにより、boards/:id のパスが設定される %>
+        <td><%= link_to '詳細', board, class: 'btn btn-outline-dark' %></td>
+        <td><%= link_to '削除', board, class: 'btn btn-outline-dark', method: :delete %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
+
+<%= paginate @boards %>
